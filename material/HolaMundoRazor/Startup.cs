@@ -11,7 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace HolaMundoRazor
-{//datos
+{
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -52,7 +52,6 @@ namespace HolaMundoRazor
 
             app.UseEndpoints(endpoints =>
             {
-                //route to code
                 endpoints.MapGet("/api/v1/hello", async context => {
                     
                     await context.Response.WriteAsJsonAsync("Hello World!");

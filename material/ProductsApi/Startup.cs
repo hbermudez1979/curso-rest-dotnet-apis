@@ -26,11 +26,8 @@ namespace ProductsApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Middleware
-            services.AddControllers();// Middleware
 
-            services.AddSingleton<object[]>(new[] { new Models.Product { Id=1, Name="Pants" }, new Models.Product { Id = 2, Name = "Socks" } });
-            //
+            services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProductsApi", Version = "v1" });
@@ -43,10 +40,9 @@ namespace ProductsApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ProductsApi v1"));
             }
-            app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ProductsApi v1"));
 
             app.UseHttpsRedirection();
 
